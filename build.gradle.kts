@@ -1,5 +1,4 @@
 import org.gradle.api.plugins.JavaPluginConvention
-import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.testing.Test
 
 plugins {
@@ -32,7 +31,7 @@ repositories {
 
 configurations {
     create("testPlugins")
-    
+
     // see JENKINS-45512
     getByName("testCompile") {
         exclude(group = "xalan")
