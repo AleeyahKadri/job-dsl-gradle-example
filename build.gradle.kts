@@ -4,11 +4,9 @@ plugins {
 
 sourceSets {
     create("jobs") {
-        withConvention(GroovySourceSet::class) {
-            groovy {
-                srcDirs("src/jobs")
-                compileClasspath += sourceSets["main"].compileClasspath
-            }
+        extensions.configure<GroovySourceDirectorySet>("groovy") {
+            srcDirs("src/jobs")
+            compileClasspath += sourceSets["main"].compileClasspath
         }
         compileClasspath += sourceSets["main"].output
         runtimeClasspath += sourceSets["main"].output
@@ -96,7 +94,11 @@ tasks.register<Copy>("resolveTestPlugins") {
     rename { mapping[it] }
 
     doLast {
-        val baseNames = source.files.map { mapping[it.name] }.map { it!!.substring(0, it.lastIndexOf('.')) }
+        val baseNames = source.files.mapNotNull { file ->
+            mapping[file.name]?.let { mappedName ->
+                mappedName.substring(0, mappedName.lastIndexOf('.'))
+            }
+        }
         file(destinationDir).resolve("index").writeText(baseNames.joinToString("\n"), Charsets.UTF_8)
     }
 }
