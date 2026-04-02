@@ -7,7 +7,7 @@ folder(basePath) {
 
 job("$basePath/gradle-legacy-build") {
     scm {
-        cvsscm { // <-- NOTE: provided by testPlugins dependency in build.gradle
+        cvsscm { // <-- NOTE: provided by testPlugins dependency in build.gradle.kts
             repositories {
                 cvsRepository {
                     cvsRoot repo
@@ -53,7 +53,7 @@ folder('images-folder') {
     displayName('Docker Images')
 
     properties {
-        folderLibraries { // <-- NOTE: provided by testPlugins dependency in build.gradle
+        folderLibraries { // <-- NOTE: provided by testPlugins dependency in build.gradle.kts
             libraries {
                 libraryConfiguration {
                     name 'test'

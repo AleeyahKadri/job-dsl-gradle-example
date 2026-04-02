@@ -14,7 +14,7 @@ An example [Job DSL](https://github.com/jenkinsci/job-dsl-plugin) project that u
     │   ├── scripts             # scripts to use with "readFileFromWorkspace"
     │   └── test
     │       └── groovy          # specs
-    └── build.gradle            # build file
+    └── build.gradle.kts            # build file
 
 # Script Examples
 
